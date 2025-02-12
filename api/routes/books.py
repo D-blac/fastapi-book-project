@@ -4,6 +4,9 @@ from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 
 from api.db.schemas import Book, Genre, InMemoryDB
+from fastapi import APIRouter, HTTPException
+from api.db.schemas import books 
+
 
 router = APIRouter()
 
@@ -60,3 +63,11 @@ async def update_book(book_id: int, book: Book) -> Book:
 async def delete_book(book_id: int) -> None:
     db.delete_book(book_id)
     return JSONResponse(status_code=status.HTTP_204_NO_CONTENT, content=None)
+
+
+@router.get("/books/{book_id}")
+async def get_book_by_id(book_id: int):
+    book = next((book for book in books if book["id"] == book_id), None)
+    if book is None:
+        raise HTTPException(status_code=404, detail="Book not found")
+    return book
