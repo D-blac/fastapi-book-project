@@ -58,7 +58,7 @@ def test_get_book_by_id():
     data = response.json()
     assert data["title"] == "The Hobbit"
 
-    response = client.get("/api/v1/books/99")  # Non-existent book
+    response = client.get("/api/v1/books/99")  
     assert response.status_code == 404
 
 

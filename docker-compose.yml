@@ -6,7 +6,7 @@ services:
     container_name: fastapi_app
     restart: always
     ports:
-      - "8000:8000"
+      - "0987:0987"
 
   nginx:
     image: nginx:latest

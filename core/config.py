@@ -1,6 +1,6 @@
 import secrets
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings # type: ignore
 
 
 class Settings(BaseSettings):
